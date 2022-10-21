@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Administración de usuarios</title>
+    <link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/poppers.js/1.12.9/udm/popper.min.js" > </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"> </script>
+
+</head>
+<body>
+  <div class="container">
+    <br>
+      <div>
+        <a href="/save/0" class="btn btn-primary">Agregar</a>
+      </div>
+    <div th:switch="${list}">
+      <h2 th:case="null">No hay usuarios registrados</h2>
+      <div th:case="*">
+       <h2>Usuarios</h2>
+         <table class="table">
+           <thead>
+             <tr>
+                <th>Apellido Patrerno</th>
+                <th>Apellido Materno</th>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th></th>
+                <th></th>
+            </tr>
+           </thead>
+             <tbody>
+                <tr th:each="usuarios : $(list)">
+                  <td th:text="$(usuarios.apellido_paterno)">
+                  <td th:text="$(usuarios.apellido_materno)">
+                  <td th:text="$(usuarios.nombre)">
+                  <td th:text="$(usuarios.usuario)">
+                  <td th:text="$(usuarios.email)">
+                  <td th:text="$(usuarios.role)">
+                  <td><a th:href="@{/save/{id}}(id={usuarios.id_usuario})">Editar</a></td>
+                  <td><a th:href="@{/delete/{id}}(id={usuarios.id_usuario})">Eliminar</a></td>
+               
+                </tr>
+             </tbody>
+         </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
